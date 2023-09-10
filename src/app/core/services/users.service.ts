@@ -11,5 +11,9 @@ export class UsersService extends BaseService{
     return this.get('users')
   }
 
+  getUserById(id: number):Observable<any>{
+    return this.get(`users/${id}`)
+  }
+
   
 }

@@ -1,17 +1,21 @@
-<div *ngFor="let user of getAllUsers$ | async" class="text-style">
-    {{ user.email }}
-    <button mat-stroked-button color="primary" (click)="toggleBox(user.id)">Show Comments</button>
-  
+<div class="users-container">
     <!-- Comment box -->
-    <div *ngIf="showBox[user.id]" class="comments-box">
+    <div *ngIf="selectedUserId" class="comments-box">
       <!-- Close button -->
-      <button class="close-button" mat-icon-button (click)="toggleBox(user.id)">
-        <mat-icon>close</mat-icon>
-      </button>
+     
   
       <!-- Your comment content goes here -->
       <!-- Replace this with your actual comments -->
-      Comments for {{ user.email }}
+      <h1 class="text-style">{{ selectedUserEmail }}</h1> 
+      <button class="close-button" mat-icon-button (click)="toggleBox(selectedUserId)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  
+    <!-- User list -->
+    <div *ngFor="let user of getAllUsers$ | async" class="text-style">
+      {{ user.email }}
+      <button mat-stroked-button color="primary" (click)="toggleBox(user.id)">Show Comments</button>
     </div>
   </div>
   
