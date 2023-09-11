@@ -31,12 +31,12 @@
   
   .header {
     display: flex;
-    align-items: center; /* Center items vertically within the flex container */
-    justify-content: space-between; /* Space items apart horizontally */
+    align-items: center; 
+    justify-content: space-between;
   }
   
   .text-style {
-    margin: 10; /* Remove default margin from the heading */
+    margin: 10; 
     font-weight: 500;
   }
   
@@ -44,5 +44,18 @@
     background-color: #ccc;
   }
   
- 
+  .fixed-comment-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+   
+  }
+  .users-list-container {
+    transition: margin-top 0.3s ease-in-out; 
+  }
   
+  .slide-down {
+    margin-top: 200px; 
+  }
