@@ -1,15 +1,18 @@
-<div class="users-container">
-    <div *ngIf="selectedUserId" class="comments-box">
-        <div class="header">
-          <h1 class="text-style">{{ selectedUserEmail }}</h1>
-          <button class="close-button" mat-icon-button (click)="toggleBox(selectedUserId)">
-            <mat-icon>close</mat-icon>
-          </button>
-        </div>
 
-        <button class="comment-style" mat-stroked-button>Your Comment Here</button>
-
-      </div>
+  <div class="users-container">
+    <div [@openClose]="selectedUserId ? 'open' : 'closed'" class="comments-box">
+        <div *ngIf="selectedUserId" >
+            <div class="header">
+              <h1 class="text-style">{{ selectedUserEmail }}</h1>
+              <button class="close-button" mat-icon-button (click)="toggleBox(selectedUserId)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+            <p>User Comments: </p>
+            <button class="comment-style" mat-stroked-button>Your Comment Here</button>
+    
+          </div>
+          </div>
   
     <div *ngFor="let user of getAllUsers$ | async" class="text-style">
       {{ user.email }}

@@ -1,10 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../core/services/users.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
+  animations: [
+    trigger('openClose', [
+      state(
+        'open',
+        style({
+          height: '150px', 
+          opacity: 1,
+        })
+      ),
+      state(
+        'closed',
+        style({
+          height: '0px',
+          opacity: 0,
+        })
+      ),
+      transition('open => closed', [animate('300ms ease-out')]),
+      transition('closed => open', [animate('300ms ease-in')]), 
+    ]),
+  ],
 })
 export class UsersComponent implements OnInit {
   selectedUserId: number | null = null;
@@ -19,11 +40,11 @@ export class UsersComponent implements OnInit {
 
   toggleBox(userId: number): void {
     if (this.selectedUserId === userId) {
-      // If the same user is clicked, close the comment box
+
       this.selectedUserId = null;
       this.selectedUserEmail = null;
     } else {
-      // If a different user is clicked, open the comment box for that user
+
       this.selectedUserId = userId;
       this.usersSrvc.getUserById(userId).subscribe(res=>{
         this.selectedUserEmail = res.email
